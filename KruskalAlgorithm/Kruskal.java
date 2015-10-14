@@ -68,15 +68,23 @@ public class Kruskal {
 				// jedna gdy te krawêdzi które maj¹ wspólne wierzcho³ki maj¹ t¹
 				// sam¹ flage - wtedy jest loopa - trzeba usun¹æ t¹ aspiruj¹c¹
 				// krawêdz
-				//druga opcja to gdy krawêdzi posiadaj¹ce wspólne wierzcho³ki z krawêdzi¹ aspiruj¹c¹ maj¹ inne flagi
-				//wtedy trzeba po³¹czyæ te dwa drzewa w jedno i zminiæ w nich flagi na takie same
-				
+				// druga opcja to gdy krawêdzi posiadaj¹ce wspólne wierzcho³ki z
+				// krawêdzi¹ aspiruj¹c¹ maj¹ inne flagi
+				// wtedy trzeba po³¹czyæ te dwa drzewa w jedno i zminiæ w nich
+				// flagi na takie same
+
 				if (inputEdges.get(i).checkForLoops(minimalSpanningTree)) {
 					inputEdges.remove(i);
 				} else {
-					System.out
-							.println("trafiliœmy na krawêdz ³¹cz¹c¹ dwa ró¿ne drzewa");
-					System.out.println(inputEdges.get(i).getTip());
+
+					// tutaj bêdziemy czekaæ na opcjê gdy aspiruj¹ca krawêdŸ nie
+					// ma ¿adnych wierzcho³ków wspólnych z krawêdzimi w
+					// minimalTree
+					//jeœli tak bêdzi to dodajemy t¹ krawêdz do rozwi¹zania z unikatow¹ flag¹ (flag++)
+					
+					if (true) {
+
+					}
 				}
 			}
 		}
