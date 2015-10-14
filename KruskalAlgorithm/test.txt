@@ -1,0 +1,26 @@
+for (int i = 0; i < minimalTreeList.size(); i++) {
+
+			if (this.getMembershipFlag() == minimalTreeList.get(i)
+					.getMembershipFlag()) {
+
+				if (toCompareFirstTip == minimalTreeList.get(i).getTip()[0]
+						|| toCompareFirstTip == minimalTreeList.get(i).getTip()[1]) {
+
+					firstTipCounter++;
+
+				}
+				if (toCompareSecondTip == minimalTreeList.get(i).getTip()[1]
+						|| toCompareSecondTip == minimalTreeList.get(i)
+								.getTip()[0]) {
+
+					secondTipCounter++;
+
+				}
+			}
+
+		}
+
+		if (((firstTipCounter > 0) && (secondTipCounter > 0))) {
+
+			loopExistance = true;
+		}

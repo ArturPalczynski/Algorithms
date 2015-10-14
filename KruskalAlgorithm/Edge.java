@@ -2,6 +2,8 @@ package KruskalAlgorithm;
 
 import java.util.ArrayList;
 
+import javax.swing.text.html.MinimalHTMLWriter;
+
 public class Edge {
 
 	private int weight;
@@ -54,28 +56,60 @@ public class Edge {
 		char toCompareFirstTip = this.getTip()[0];
 		char toCompareSecondTip = this.getTip()[1];
 
+		int flagOneInMinimalTree = 0;
+		int flagsTwoInMinimalTree = 0;
+
 		for (int i = 0; i < minimalTreeList.size(); i++) {
 
 			if (toCompareFirstTip == minimalTreeList.get(i).getTip()[0]
 					|| toCompareFirstTip == minimalTreeList.get(i).getTip()[1]) {
 
 				firstTipCounter++;
+				flagOneInMinimalTree = minimalTreeList.get(i)
+						.getMembershipFlag();
+				break;
 
 			}
 			if (toCompareSecondTip == minimalTreeList.get(i).getTip()[1]
 					|| toCompareSecondTip == minimalTreeList.get(i).getTip()[0]) {
 
 				secondTipCounter++;
+				flagsTwoInMinimalTree = minimalTreeList.get(i)
+						.getMembershipFlag();
+				break;
+			}
+
+		}
+
+		if (((firstTipCounter > 0) && (secondTipCounter > 0))) {
+
+			if (flagOneInMinimalTree == flagOneInMinimalTree) {
+				loopExistance = true;
+			} else {
+				loopExistance = false; // sytuacja kiedy krawêdz nale¿y do
+										// ró¿nych drzew
 
 			}
 		}
 
-		if ((firstTipCounter > 0) && (secondTipCounter > 0)) {
-
-			loopExistance = true;
-		}
-
 		return loopExistance;
+
 	}
 
+	public boolean dontHaveCommonVertex(Edge edge) {
+
+		boolean dontHaveCommonVertex = false;
+
+		if (this.getTip()[0] == edge.getTip()[0]
+				|| this.getTip()[0] == edge.getTip()[1]
+				|| this.getTip()[1] == edge.getTip()[0]
+				|| this.getTip()[1] == edge.getTip()[1]) {
+
+		} else {
+			dontHaveCommonVertex = true;
+		}
+
+		return dontHaveCommonVertex;
+
+	}
 }
