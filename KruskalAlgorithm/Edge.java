@@ -56,24 +56,18 @@ public class Edge {
 		char toCompareFirstTip = this.getTip()[0];
 		char toCompareSecondTip = this.getTip()[1];
 
-		int flagOneInMinimalTree = 0;
-		int flagsTwoInMinimalTree = 0;
-
 		for (int i = 0; i < minimalTreeList.size(); i++) {
 
 			if (toCompareFirstTip == minimalTreeList.get(i).getTip()[0]
 					|| toCompareFirstTip == minimalTreeList.get(i).getTip()[1]) {
 
 				firstTipCounter++;
-
 			}
 			if (toCompareSecondTip == minimalTreeList.get(i).getTip()[1]
 					|| toCompareSecondTip == minimalTreeList.get(i).getTip()[0]) {
 
 				secondTipCounter++;
-
 			}
-
 		}
 
 		if (((firstTipCounter > 0) && (secondTipCounter > 0))) {
@@ -82,23 +76,6 @@ public class Edge {
 		}
 
 		return loopExistance;
-
-	}
-
-	public boolean dontHaveCommonVertex(Edge edge) {
-
-		boolean dontHaveCommonVertex = false;
-
-		if (this.getTip()[0] == edge.getTip()[0]
-				|| this.getTip()[0] == edge.getTip()[1]
-				|| this.getTip()[1] == edge.getTip()[0]
-				|| this.getTip()[1] == edge.getTip()[1]) {
-
-		} else {
-			dontHaveCommonVertex = true;
-		}
-
-		return dontHaveCommonVertex;
 
 	}
 
@@ -165,7 +142,6 @@ public class Edge {
 			if (this.getTip()[1] == mTree.get(i).getTip()[0]
 					|| this.getTip()[1] == mTree.get(i).getTip()[1]) {
 
-				
 				secondFlag = mTree.get(i).getMembershipFlag();
 				break;
 			}
