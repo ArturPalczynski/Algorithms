@@ -46,7 +46,8 @@ public class Kruskal {
 
 			// sprawdzamy czy aspiruj¹ca krawêdz ma jeden wirzcho³ek wspólny z
 			// krawêdzimi w minimalTree
-			if (oneVertexinCommon()) {
+
+			if (inputEdges.get(i).oneVertexInCommon(minimalSpanningTree)) {
 
 				// ustawiamy flage w nowo dodawanej krawêdzi na tak¹ jaka jest w
 				// krawêdzi która ma wspólny wierzcho³ek z t¹ nowo dodawan¹
@@ -55,7 +56,7 @@ public class Kruskal {
 						serchForEdgeWithOneCommonVertex(inputEdges.get(i),
 								minimalSpanningTree).getMembershipFlag());
 
-				minimalSpanningTree.add(inputEdges.get(i)); // po dodani flaki
+				minimalSpanningTree.add(inputEdges.get(i)); // po dodani flagi
 															// dodajemy krawêdz
 															// do minimalnego
 															// drzewa
@@ -80,8 +81,9 @@ public class Kruskal {
 					// tutaj bêdziemy czekaæ na opcjê gdy aspiruj¹ca krawêdŸ nie
 					// ma ¿adnych wierzcho³ków wspólnych z krawêdzimi w
 					// minimalTree
-					//jeœli tak bêdzi to dodajemy t¹ krawêdz do rozwi¹zania z unikatow¹ flag¹ (flag++)
-					
+					// jeœli tak bêdzi to dodajemy t¹ krawêdz do rozwi¹zania z
+					// unikatow¹ flag¹ (flag++)
+
 					if (true) {
 
 					}

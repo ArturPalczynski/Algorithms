@@ -112,4 +112,43 @@ public class Edge {
 		return dontHaveCommonVertex;
 
 	}
+
+	public boolean oneVertexInCommon(ArrayList<Edge> minimalTree) {
+
+		int firstVertexOccurrence = 0;
+		int secondVertexOccurrence = 0;
+
+		boolean oneCommonVertex = false;
+
+		for (int i = 0; i < minimalTree.size(); i++) {
+
+			if (this.getTip()[0] == minimalTree.get(i).getTip()[0]
+					|| this.getTip()[0] == minimalTree.get(i).getTip()[1]) {
+
+				firstVertexOccurrence++;
+
+			}
+			if (this.getTip()[1] == minimalTree.get(i).getTip()[0]
+					|| this.getTip()[1] == minimalTree.get(i).getTip()[1]) {
+				
+				secondVertexOccurrence++;
+			}
+
+		}
+
+		if (firstVertexOccurrence > 0 && secondVertexOccurrence>0 ) {
+
+			oneCommonVertex = false; //loop!
+
+		}else{
+			
+			if((firstVertexOccurrence>0 && secondVertexOccurrence==0) || (firstVertexOccurrence==0 && secondVertexOccurrence>0) ){
+				
+				oneCommonVertex = true;
+				
+			}
+		}
+
+		return oneCommonVertex;
+	}
 }
