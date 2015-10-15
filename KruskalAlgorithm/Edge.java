@@ -65,31 +65,20 @@ public class Edge {
 					|| toCompareFirstTip == minimalTreeList.get(i).getTip()[1]) {
 
 				firstTipCounter++;
-				flagOneInMinimalTree = minimalTreeList.get(i)
-						.getMembershipFlag();
-				break;
 
 			}
 			if (toCompareSecondTip == minimalTreeList.get(i).getTip()[1]
 					|| toCompareSecondTip == minimalTreeList.get(i).getTip()[0]) {
 
 				secondTipCounter++;
-				flagsTwoInMinimalTree = minimalTreeList.get(i)
-						.getMembershipFlag();
-				break;
+
 			}
 
 		}
 
 		if (((firstTipCounter > 0) && (secondTipCounter > 0))) {
 
-			if (flagOneInMinimalTree == flagOneInMinimalTree) {
-				loopExistance = true;
-			} else {
-				loopExistance = false; // sytuacja kiedy krawêdz nale¿y do
-										// ró¿nych drzew
-
-			}
+			loopExistance = true;
 		}
 
 		return loopExistance;
@@ -130,25 +119,83 @@ public class Edge {
 			}
 			if (this.getTip()[1] == minimalTree.get(i).getTip()[0]
 					|| this.getTip()[1] == minimalTree.get(i).getTip()[1]) {
-				
+
 				secondVertexOccurrence++;
 			}
 
 		}
 
-		if (firstVertexOccurrence > 0 && secondVertexOccurrence>0 ) {
+		if (firstVertexOccurrence > 0 && secondVertexOccurrence > 0) {
 
-			oneCommonVertex = false; //loop!
+			oneCommonVertex = false; // loop!
 
-		}else{
-			
-			if((firstVertexOccurrence>0 && secondVertexOccurrence==0) || (firstVertexOccurrence==0 && secondVertexOccurrence>0) ){
-				
+		} else {
+
+			if ((firstVertexOccurrence > 0 && secondVertexOccurrence == 0)
+					|| (firstVertexOccurrence == 0 && secondVertexOccurrence > 0)) {
+
 				oneCommonVertex = true;
-				
+
 			}
 		}
 
 		return oneCommonVertex;
 	}
+
+	public boolean ifEdgeConnectsTwoTrees(ArrayList<Edge> mTree) {
+
+		boolean egdeConnectsTwoTrees = false;
+
+		boolean firstVertex = false;
+		boolean secondVertex = false;
+		int firstFlag = 0;
+		int secondFlag = 0;
+
+		// mTree.get(i).getMembershipFlag();
+
+		for (int i = 0; i < mTree.size(); i++) {
+
+			if (this.getTip()[0] == mTree.get(i).getTip()[0]
+					|| this.getTip()[0] == mTree.get(i).getTip()[1]) {
+
+				// firstVertex = true;
+				firstFlag = mTree.get(i).getMembershipFlag();
+				break;
+
+			}
+		}
+
+		for (int i = 0; i < mTree.size(); i++) {
+
+			if (this.getTip()[1] == mTree.get(i).getTip()[0]
+					|| this.getTip()[1] == mTree.get(i).getTip()[1]) {
+
+				// secondVertex = true;
+				secondFlag = mTree.get(i).getMembershipFlag();
+				break;
+			}
+		}
+
+		if (firstFlag != secondFlag) {
+
+			egdeConnectsTwoTrees = true;
+			this.setMembershipFlag(firstFlag);
+			mTree.add(this);
+			
+			for(int j=0;j<mTree.size();j++){
+				
+				if(mTree.get(j).getMembershipFlag() == secondFlag){
+					
+					mTree.get(j).setMembershipFlag(firstFlag);
+					
+				}
+				
+			}
+			
+		}
+
+		return egdeConnectsTwoTrees;
+
+	}
+
 }

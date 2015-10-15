@@ -7,19 +7,35 @@ public class Test {
 
 	public static void main(String[] args) {
 
+		int membershipFlagCounter = 2;
+
 		ArrayList<Edge> spanningTree = new ArrayList<Edge>();
 
 		Edge edgeOne = new Edge(1, new char[] { 'a', 'b' }, 0);
 		Edge edgeTwo = new Edge(2, new char[] { 'b', 'c' }, 0);
 		Edge edgeThree = new Edge(3, new char[] { 'b', 'e' }, 0);
-		Edge edgeFour = new Edge(6, new char[] { 'a', 'e' }, 0);
-		Edge edgeFive = new Edge(4, new char[] { 'd', 'h' }, 0);
+		Edge edgeFour = new Edge(5, new char[] { 'a', 'e' }, 0);
+		Edge edgeFive = new Edge(2, new char[] { 'd', 'h' }, 0);
+		Edge edgeSix = new Edge(8, new char[] { 'h', 'g' }, 0);
+		Edge edgeSeven = new Edge(9, new char[] { 'g', 'd' }, 0);
+		Edge edgeEight = new Edge(10, new char[] { 'c', 'd' }, 0);
+		//Edge edgeNine = new Edge(9, new char[] { 'g', 'd' }, 0);
+		//Edge edgeTen = new Edge(9, new char[] { 'g', 'd' }, 0);
+		//Edge edgeEleven = new Edge(9, new char[] { 'g', 'd' }, 0);
+		//Edge edgeTwelve = new Edge(9, new char[] { 'g', 'd' }, 0);
 
 		spanningTree.add(edgeOne);
 		spanningTree.add(edgeTwo);
 		spanningTree.add(edgeThree);
 		spanningTree.add(edgeFour);
 		spanningTree.add(edgeFive);
+		spanningTree.add(edgeSix);
+		spanningTree.add(edgeSeven);
+		spanningTree.add(edgeEight);
+		//spanningTree.add(edgeNine);
+		//spanningTree.add(edgeTen);
+		//spanningTree.add(edgeEleven);
+		//spanningTree.add(edgeTwelve);
 
 		BubleSorting.sortEdges(spanningTree);
 
@@ -46,26 +62,38 @@ public class Test {
 								spanningTree.get(i), minTree)
 								.getMembershipFlag());
 
-				minTree.add(spanningTree.get(i)); // po dodani flagi
-													// dodajemy krawêdz
-													// do minimalnego
-													// drzewa
-
-				System.out.println(minTree.size());
+				minTree.add(spanningTree.get(i));
 
 			} else {
-//usuwamy loope
-				if(spanningTree.get(i).checkForLoops(minTree)){
-					System.out.println("Loopa usuniêta");
-					spanningTree.remove(i);
-				}else{
+				
+				if(spanningTree.get(i).ifEdgeConnectsTwoTrees(minTree)){
 					
-					System.out.println("Nie ma wspólnych wierzcho³ków dla: ");
-					System.out.println(spanningTree.get(i).getTip()[0]+" "+spanningTree.get(i).getTip()[1] );
-//tutaj dociera opcja ze sprawdzana krawêdz nie ma wspólnych wierzcho³ków z drzewem					
+					System.out.print("Krawêdz ³¹czy dwa drzewa   ");
+					System.out.println(spanningTree.get(i).getTip());
 					
+					
+					
+					//minTree.add(spanningTree.get(i));
 				}
+				
+				// tutaj loopa jest pomijana
+				if (spanningTree.get(i).checkForLoops(minTree)) {
+					System.out.println("Loop!");
+					//dodaæ przypadek po³¹czenia dwóch drzew
+				} else {
 
+					System.out.print("Nie ma wspólnych wierzcho³ków dla: ");
+					System.out.println(spanningTree.get(i).getTip()[0] + " "
+							+ spanningTree.get(i).getTip()[1]);
+
+					spanningTree.get(i).setMembershipFlag(
+							membershipFlagCounter++);
+					minTree.add(spanningTree.get(i));
+					
+					
+					
+
+				}
 			}
 		}
 
@@ -89,13 +117,8 @@ public class Test {
 
 				theSameOneVertex = minimalEdges.get(i);
 				break;
-
 			}
-
 		}
-
 		return theSameOneVertex;
-
 	}
-
 }
