@@ -7,11 +7,11 @@ public class Kruskal {
 	public static void main(String[] args) {
 
 		Edge edgeOne = new Edge(1, new char[] { 'a', 'b' }, 0);
-		Edge edgeTwo = new Edge(5, new char[] { 'b', 'c' }, 0);
-		Edge edgeThree = new Edge(3, new char[] { 'c', 'd' }, 0);
-		Edge edgeFour = new Edge(6, new char[] { 'd', 'e' }, 0);
-		Edge edgeFive = new Edge(4, new char[] { 'a', 'e' }, 0);
-		Edge edgeSix = new Edge(3, new char[] { 'b', 'e' }, 0);
+		Edge edgeTwo = new Edge(2, new char[] { 'b', 'c' }, 0);
+		Edge edgeThree = new Edge(3, new char[] { 'b', 'e' }, 0);
+		Edge edgeFour = new Edge(6, new char[] { 'a', 'e' }, 0);
+		//Edge edgeFive = new Edge(4, new char[] { 'a', 'e' }, 0);
+		//Edge edgeSix = new Edge(3, new char[] { 'b', 'e' }, 0);
 		// Edge edgeSeven = new Edge(6, new char[] { 'c', 'e' }, 0);
 		// Edge edgeEight = new Edge(4, new char[] { 'c', 'f' }, 0);
 		// Edge edgeNine = new Edge(2, new char[] { 'd', 'f' }, 0);
@@ -28,8 +28,8 @@ public class Kruskal {
 		// inputEdges.add(edgeSeven);
 		inputEdges.add(edgeOne);
 		inputEdges.add(edgeThree);
-		inputEdges.add(edgeFive);
-		inputEdges.add(edgeSix);
+		//inputEdges.add(edgeFive);
+		//inputEdges.add(edgeSix);
 		// inputEdges.add(edgeTen);
 		// kruskalTree.add(edgeEleven);
 		// kruskalTree.add(edgeTwelve);
@@ -63,16 +63,6 @@ public class Kruskal {
 
 			} else {
 
-				// tutaj trzeba sprawdziæ czy krawêdz aspiruj¹ca ma dwa
-				// wierzcho³ki wspólne z krawêdziami w minimal tree
-				// jeœli tak to mamy dwie opcje
-				// jedna gdy te krawêdzi które maj¹ wspólne wierzcho³ki maj¹ t¹
-				// sam¹ flage - wtedy jest loopa - trzeba usun¹æ t¹ aspiruj¹c¹
-				// krawêdz
-				// druga opcja to gdy krawêdzi posiadaj¹ce wspólne wierzcho³ki z
-				// krawêdzi¹ aspiruj¹c¹ maj¹ inne flagi
-				// wtedy trzeba po³¹czyæ te dwa drzewa w jedno i zminiæ w nich
-				// flagi na takie same
 
 				if (inputEdges.get(i).checkForLoops(minimalSpanningTree)) {
 					inputEdges.remove(i);
