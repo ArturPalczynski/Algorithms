@@ -11,18 +11,19 @@ public class Test {
 
 		ArrayList<Edge> spanningTree = new ArrayList<Edge>();
 
+		Edge edgeThirteen = new Edge(14, new char[] { 'h', 'e' }, 0);
 		Edge edgeOne = new Edge(1, new char[] { 'a', 'b' }, 0);
-		Edge edgeTwo = new Edge(2, new char[] { 'b', 'c' }, 0);
-		Edge edgeThree = new Edge(3, new char[] { 'b', 'e' }, 0);
-		Edge edgeFour = new Edge(5, new char[] { 'a', 'e' }, 0);
-		Edge edgeFive = new Edge(2, new char[] { 'd', 'h' }, 0);
-		Edge edgeSix = new Edge(8, new char[] { 'h', 'g' }, 0);
-		Edge edgeSeven = new Edge(9, new char[] { 'g', 'd' }, 0);
-		Edge edgeEight = new Edge(10, new char[] { 'c', 'd' }, 0);
-		//Edge edgeNine = new Edge(9, new char[] { 'g', 'd' }, 0);
-		//Edge edgeTen = new Edge(9, new char[] { 'g', 'd' }, 0);
-		//Edge edgeEleven = new Edge(9, new char[] { 'g', 'd' }, 0);
-		//Edge edgeTwelve = new Edge(9, new char[] { 'g', 'd' }, 0);
+		Edge edgeTwo = new Edge(6, new char[] { 'b', 'c' }, 0);
+		Edge edgeThree = new Edge(8, new char[] { 'a', 'd' }, 0);
+		Edge edgeFour = new Edge(4, new char[] { 'b', 'd' }, 0);
+		Edge edgeFive = new Edge(41, new char[] { 'd', 'e' }, 0);
+		Edge edgeSix = new Edge(28, new char[] { 'a', 'h' }, 0);
+		Edge edgeSeven = new Edge(25, new char[] { 'd', 'h' }, 0);
+		Edge edgeEight = new Edge(5, new char[] { 'c', 'e' }, 0);
+		// Edge edgeNine = new Edge(41, new char[] { 'd', 'e' }, 0);
+		Edge edgeTen = new Edge(45, new char[] { 'h', 'g' }, 0);
+		Edge edgeEleven = new Edge(35, new char[] { 'g', 'f' }, 0);
+		Edge edgeTwelve = new Edge(44, new char[] { 'e', 'f' }, 0);
 
 		spanningTree.add(edgeOne);
 		spanningTree.add(edgeTwo);
@@ -32,10 +33,11 @@ public class Test {
 		spanningTree.add(edgeSix);
 		spanningTree.add(edgeSeven);
 		spanningTree.add(edgeEight);
-		//spanningTree.add(edgeNine);
-		//spanningTree.add(edgeTen);
-		//spanningTree.add(edgeEleven);
-		//spanningTree.add(edgeTwelve);
+		// spanningTree.add(edgeNine);
+		spanningTree.add(edgeTen);
+		spanningTree.add(edgeEleven);
+		spanningTree.add(edgeTwelve);
+		spanningTree.add(edgeThirteen);
 
 		BubleSorting.sortEdges(spanningTree);
 
@@ -47,6 +49,13 @@ public class Test {
 
 			// sprawdzamy czy aspiruj¹ca krawêdz ma jeden wirzcho³ek wspólny z
 			// krawêdzimi w minimalTree
+			
+			if (spanningTree.get(i).ifEdgeConnectsTwoTrees(minTree)) {
+
+				System.out.print("Krawêdz ³¹czy dwa drzewa   ");
+				System.out.println(spanningTree.get(i).getTip());
+
+			}
 
 			if (spanningTree.get(i).oneVertexInCommon(minTree)) {
 
@@ -63,24 +72,25 @@ public class Test {
 								.getMembershipFlag());
 
 				minTree.add(spanningTree.get(i));
+				
+				
 
 			} else {
+
 				
-				if(spanningTree.get(i).ifEdgeConnectsTwoTrees(minTree)){
-					
-					System.out.print("Krawêdz ³¹czy dwa drzewa   ");
+				
+				// tutaj loopa jest pomijana
+				if (spanningTree.get(i).checkForLoops(minTree)) {
+					System.out.print("Loop!");
 					System.out.println(spanningTree.get(i).getTip());
 					
 					
 					
-					//minTree.add(spanningTree.get(i));
-				}
-				
-				// tutaj loopa jest pomijana
-				if (spanningTree.get(i).checkForLoops(minTree)) {
-					System.out.println("Loop!");
-					//dodaæ przypadek po³¹czenia dwóch drzew
+					
+					
 				} else {
+					
+					
 
 					System.out.print("Nie ma wspólnych wierzcho³ków dla: ");
 					System.out.println(spanningTree.get(i).getTip()[0] + " "
@@ -89,11 +99,14 @@ public class Test {
 					spanningTree.get(i).setMembershipFlag(
 							membershipFlagCounter++);
 					minTree.add(spanningTree.get(i));
-					
-					
-					
 
+					
+					
 				}
+				
+				
+
+				
 			}
 		}
 
@@ -101,6 +114,16 @@ public class Test {
 			System.out.println(e.getTip()[0] + " " + e.getTip()[1] + " "
 					+ e.getMembershipFlag());
 		}
+
+		int suma = 0;
+		for (Edge e : minTree) {
+
+			suma += e.getWeight();
+
+		}
+
+		System.out.println(suma);
+
 	}
 
 	public static Edge serchForEdgeWithOneCommonVertexTest(Edge edge,

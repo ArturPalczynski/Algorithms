@@ -146,19 +146,14 @@ public class Edge {
 
 		boolean egdeConnectsTwoTrees = false;
 
-		boolean firstVertex = false;
-		boolean secondVertex = false;
 		int firstFlag = 0;
 		int secondFlag = 0;
-
-		// mTree.get(i).getMembershipFlag();
 
 		for (int i = 0; i < mTree.size(); i++) {
 
 			if (this.getTip()[0] == mTree.get(i).getTip()[0]
 					|| this.getTip()[0] == mTree.get(i).getTip()[1]) {
 
-				// firstVertex = true;
 				firstFlag = mTree.get(i).getMembershipFlag();
 				break;
 
@@ -170,7 +165,7 @@ public class Edge {
 			if (this.getTip()[1] == mTree.get(i).getTip()[0]
 					|| this.getTip()[1] == mTree.get(i).getTip()[1]) {
 
-				// secondVertex = true;
+				
 				secondFlag = mTree.get(i).getMembershipFlag();
 				break;
 			}
@@ -181,17 +176,15 @@ public class Edge {
 			egdeConnectsTwoTrees = true;
 			this.setMembershipFlag(firstFlag);
 			mTree.add(this);
-			
-			for(int j=0;j<mTree.size();j++){
-				
-				if(mTree.get(j).getMembershipFlag() == secondFlag){
-					
+
+			for (int j = 0; j < mTree.size(); j++) {
+
+				if (mTree.get(j).getMembershipFlag() == secondFlag) {
+
 					mTree.get(j).setMembershipFlag(firstFlag);
-					
+
 				}
-				
 			}
-			
 		}
 
 		return egdeConnectsTwoTrees;
