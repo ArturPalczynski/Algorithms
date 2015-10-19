@@ -23,18 +23,16 @@ public class Kruskal {
 		// Edge edgeEleven = new Edge(35, new char[] { 'g', 'f' }, 0);
 		// Edge edgeTwelve = new Edge(44, new char[] { 'e', 'f' }, 0);
 		// Edge edgeThirteen = new Edge(1, new char[] { 'a', 'e' }, 0);
-		
+
 		Edge edgeOne = new Edge(1, new char[] { 'a', 'e' }, 0);
-		Edge edgeTwo = new Edge(2, new char[] { 'a', 'f' }, 0);
+		Edge edgeTwo = new Edge(3, new char[] { 'a', 'f' }, 0);
 		Edge edgeThree = new Edge(2, new char[] { 'b', 'c' }, 0);
-		Edge edgeFour = new Edge(2, new char[] { 'b', 'e' }, 0);
+		Edge edgeFour = new Edge(4, new char[] { 'b', 'e' }, 0);
 		Edge edgeFive = new Edge(3, new char[] { 'd', 'e' }, 0);
 		Edge edgeSix = new Edge(4, new char[] { 'a', 'b' }, 0);
 		Edge edgeSeven = new Edge(6, new char[] { 'f', 'd' }, 0);
 		Edge edgeEight = new Edge(7, new char[] { 'e', 'f' }, 0);
 		Edge edgeNine = new Edge(8, new char[] { 'c', 'd' }, 0);
-
-		
 
 		spanningTree.add(edgeOne);
 		spanningTree.add(edgeTwo);
@@ -58,38 +56,31 @@ public class Kruskal {
 
 		for (int i = 1; i < spanningTree.size(); i++) {
 
-			// sprawdzamy czy aspiruj¹ca krawêdz ma jeden wirzcho³ek wspólny z
-			// krawêdzimi w minimalTree
+			spanningTree.get(i).ifEdgeConnectsTwoTrees(minTree);  
 
-			if (spanningTree.get(i).ifEdgeConnectsTwoTrees(minTree)) {
-
-				System.out.print("Krawêdz ³¹czy dwa drzewa   ");
-				System.out.println(spanningTree.get(i).getTip());
-
-			}
 
 			if (spanningTree.get(i).oneVertexInCommon(minTree)) {
 
 				System.out.println("One common vertex for: " + i + " "
 						+ spanningTree.get(i).getTip()[0] + " "
 						+ spanningTree.get(i).getTip()[1]);
-
+				
 				// ustawiamy flage w nowo dodawanej krawêdzi na tak¹ jaka jest w
 				// krawêdzi która ma wspólny wierzcho³ek z t¹ nowo dodawan¹
 				// krawêdzi¹
 				spanningTree.get(i).setMembershipFlag(
 						serchForEdgeWithOneCommonVertex(spanningTree.get(i),
 								minTree).getMembershipFlag());
-
+				
 				minTree.add(spanningTree.get(i));
-
+				
 			} else {
-
+				
 				// tutaj pêtla jest pomijana
 				if (spanningTree.get(i).checkForLoops(minTree)) {
 
 				} else {
-
+					
 					System.out.print("Nie ma wspólnych wierzcho³ków dla: ");
 					System.out.println(spanningTree.get(i).getTip()[0] + " "
 							+ spanningTree.get(i).getTip()[1]);
@@ -99,7 +90,9 @@ public class Kruskal {
 					minTree.add(spanningTree.get(i));
 
 				}
+
 			}
+
 		}
 
 		for (Edge e : minTree) {

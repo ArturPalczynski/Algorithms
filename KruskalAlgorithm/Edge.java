@@ -27,7 +27,6 @@ public class Edge {
 		this.weight = weight;
 		this.tip = tips;
 		this.membershipFlag = flag;
-
 	}
 
 	public int getWeight() {
@@ -150,14 +149,14 @@ public class Edge {
 		if (firstFlag != secondFlag) {
 
 			egdeConnectsTwoTrees = true;
-			this.setMembershipFlag(firstFlag);
+			this.setMembershipFlag(secondFlag);
 			mTree.add(this);
 
 			for (int j = 0; j < mTree.size(); j++) {
 
-				if (mTree.get(j).getMembershipFlag() == secondFlag) {
+				if (mTree.get(j).getMembershipFlag() == firstFlag) {
 
-					mTree.get(j).setMembershipFlag(firstFlag);
+					mTree.get(j).setMembershipFlag(secondFlag);
 
 				}
 			}
