@@ -56,29 +56,26 @@ public class Kruskal {
 
 		for (int i = 1; i < spanningTree.size(); i++) {
 
-			spanningTree.get(i).ifEdgeConnectsTwoTrees(minTree);  
-
+			spanningTree.get(i).ifEdgeConnectsTwoTrees(minTree);
 
 			if (spanningTree.get(i).oneVertexInCommon(minTree)) {
 
 				System.out.println("One common vertex for: " + i + " "
 						+ spanningTree.get(i).getTip()[0] + " "
 						+ spanningTree.get(i).getTip()[1]);
-				
 
 				spanningTree.get(i).setMembershipFlag(
 						serchForEdgeWithOneCommonVertex(spanningTree.get(i),
 								minTree).getMembershipFlag());
-				
+
 				minTree.add(spanningTree.get(i));
-				
+
 			} else {
-				
-				
+
 				if (spanningTree.get(i).checkForLoops(minTree)) {
 
 				} else {
-					
+
 					System.out.print("No common vertexs for ");
 					System.out.println(spanningTree.get(i).getTip()[0] + " "
 							+ spanningTree.get(i).getTip()[1]);
