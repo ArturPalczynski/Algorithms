@@ -74,7 +74,7 @@ public class Kruskal {
 				
 			} else {
 				
-				// tutaj p�tla jest pomijana
+				
 				if (spanningTree.get(i).checkForLoops(minTree)) {
 
 				} else {
