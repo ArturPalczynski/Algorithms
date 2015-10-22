@@ -65,9 +65,7 @@ public class Kruskal {
 						+ spanningTree.get(i).getTip()[0] + " "
 						+ spanningTree.get(i).getTip()[1]);
 				
-				// ustawiamy flage w nowo dodawanej krawêdzi na tak¹ jaka jest w
-				// krawêdzi która ma wspólny wierzcho³ek z t¹ nowo dodawan¹
-				// krawêdzi¹
+
 				spanningTree.get(i).setMembershipFlag(
 						serchForEdgeWithOneCommonVertex(spanningTree.get(i),
 								minTree).getMembershipFlag());
@@ -76,12 +74,12 @@ public class Kruskal {
 				
 			} else {
 				
-				// tutaj pêtla jest pomijana
+				// tutaj pï¿½tla jest pomijana
 				if (spanningTree.get(i).checkForLoops(minTree)) {
 
 				} else {
 					
-					System.out.print("Nie ma wspólnych wierzcho³ków dla: ");
+					System.out.print("Nie ma wspï¿½lnych wierzchoï¿½kï¿½w dla: ");
 					System.out.println(spanningTree.get(i).getTip()[0] + " "
 							+ spanningTree.get(i).getTip()[1]);
 
