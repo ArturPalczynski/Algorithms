@@ -79,7 +79,7 @@ public class Kruskal {
 
 				} else {
 					
-					System.out.print("Nie ma wsp�lnych wierzcho�k�w dla: ");
+					System.out.print("No common vertexs for ");
 					System.out.println(spanningTree.get(i).getTip()[0] + " "
 							+ spanningTree.get(i).getTip()[1]);
 
