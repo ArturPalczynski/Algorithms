@@ -43,8 +43,6 @@ public class Kruskal {
 		spanningTree.add(edgeSeven);
 		spanningTree.add(edgeEight);
 		spanningTree.add(edgeNine);
-		// spanningTree.add(edgeTen);
-		// spanningTree.add(edgeEleven);
 		// spanningTree.add(edgeTwelve);
 		// spanningTree.add(edgeThirteen);
 
